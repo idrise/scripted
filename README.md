@@ -1,0 +1,1 @@
+![Deno](https://github.com/idrise/scripted/workflows/Deno/badge.svg)
