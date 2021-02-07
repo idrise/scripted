@@ -5,16 +5,24 @@ import {
   assertThrowsAsync,
 } from "https://deno.land/std/testing/asserts.ts";
 
-import { sourceFolderPath } from "../../platform/deno/sourceFolderPath.ts";
 import { packageJson } from "./packageJson.ts";
 import { PackageJson } from "./schemaTypes.ts";
 
 const createTmpPackageJson: () => Promise<string> = async () => {
   const tmpFile = await Deno.makeTempFile();
-  await Deno.copyFile(
-    `${sourceFolderPath(import.meta.url)}/package.json`,
-    tmpFile,
-  );
+  await Deno.writeTextFile(tmpFile,`{
+    "name": "scripted",
+    "version": "1.0.0",
+    "description": "5",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Jimmy",
+    "license": "ISC",
+    "newParam": "hello"
+  }
+  `)
   return tmpFile;
 };
 
