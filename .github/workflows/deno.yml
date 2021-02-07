@@ -31,9 +31,12 @@ jobs:
         uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno }}
+      
+      - name: Lint Deno Module
+        run: deno fmt --check
+      
+      - name: Build Deno Module
+        run: deno run --reload mod.ts
 
-      - name: Cache Dependencies
-        run: deno cache ./src/scripted.ts
-
-      - name: Run Tests
-        run: deno test -A --unstable
+      # - name: Run Tests
+      #   run: deno test -A --unstable
