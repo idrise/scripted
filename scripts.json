@@ -1,0 +1,30 @@
+{
+  "$schema": "https://deno.land/x/denon@2.4.6/schema.json",
+  "scripts": {
+    "start": {
+      "allow": ["read","write","run","env"],
+      "cmd": "deno run examples/deno/test.ts ",
+      "desc": "Run Example Scripts"
+    },
+    "test": {
+      "allow": ["read","write","run"],
+      "cmd": "deno test ./src",
+      "desc": "Run tests"
+    },
+    "lint": {
+      "unstable": true,
+      "cmd": "deno lint --ignore=node_modules,docs,src/platform/node",
+      "desc": "Run Lint"
+    },
+    "fmt": {
+      "unstable": true,
+      "cmd": "deno fmt --ignore=node_modules,docs,src/platform/node",
+      "desc": "Run Format"
+    },
+    "coverage": {
+      "allow": ["read","write","run"],
+      "cmd": "deno test  --coverage --unstable ./src",
+      "desc": "Run Coverage"
+    }
+  }
+}
