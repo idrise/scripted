@@ -10,7 +10,9 @@ import { PackageJson } from "./schemaTypes.ts";
 
 const createTmpPackageJson: () => Promise<string> = async () => {
   const tmpFile = await Deno.makeTempFile();
-  await Deno.writeTextFile(tmpFile,`{
+  await Deno.writeTextFile(
+    tmpFile,
+    `{
     "name": "scripted",
     "version": "1.0.0",
     "description": "5",
@@ -22,7 +24,8 @@ const createTmpPackageJson: () => Promise<string> = async () => {
     "license": "ISC",
     "newParam": "hello"
   }
-  `)
+  `,
+  );
   return tmpFile;
 };
 

@@ -1,1 +1,1 @@
-export {script} from './src/scripted.ts'
+export { script } from "./src/scripted.ts";

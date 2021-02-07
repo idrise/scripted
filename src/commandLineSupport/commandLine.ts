@@ -5,9 +5,9 @@ export function parseDescribe(str: string) {
 }
 
 interface IdentifiedToken {
-  type: "switch" | "command" | "fixedparam"
-  key?:string
-  param?: string
+  type: "switch" | "command" | "fixedparam";
+  key?: string;
+  param?: string;
 }
 
 export function identifyToken(
@@ -17,19 +17,21 @@ export function identifyToken(
   const isFirstToken = index === 0;
   const tokenBeginsWithLetter = /^[a-zA-Z0-9]/.test(str);
   const isFirstLetterDoubleDash = str.startsWith("--");
-  const isFirstLetterRequiredParameter = str.startsWith("[") && str.endsWith("]");
-  const isFirstLetterRequiredParameters = str.startsWith("[...") && str.endsWith(']');
+  const isFirstLetterRequiredParameter = str.startsWith("[") &&
+    str.endsWith("]");
+  const isFirstLetterRequiredParameters = str.startsWith("[...") &&
+    str.endsWith("]");
   const isCommand = tokenBeginsWithLetter && isFirstToken;
 
   if (isCommand) {
-    return {type: "command"};
+    return { type: "command" };
   }
   if (isFirstLetterRequiredParameter || isFirstLetterRequiredParameters) {
-    return {type: "fixedparam"};
+    return { type: "fixedparam" };
   }
   if (isFirstLetterDoubleDash) {
-    const [key,param] = str.split('=')
-    return {type: "switch",key:key.slice(2), param: param};
+    const [key, param] = str.split("=");
+    return { type: "switch", key: key.slice(2), param: param };
   }
   throw new Error(`Unrecognised token ${str}`);
 }
