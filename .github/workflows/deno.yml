@@ -33,7 +33,7 @@ jobs:
           deno-version: ${{ matrix.deno }}
       
       - name: Lint Deno Module
-        run: deno fmt --check
+        run: deno fmt ./src --check
       
       - name: Build Deno Module
         run: deno run --reload mod.ts
