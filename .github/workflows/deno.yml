@@ -32,8 +32,8 @@ jobs:
         with:
           deno-version: ${{ matrix.deno }}
 
-      # - name: Cache Dependencies
-      #   run: deno cache deps.ts
+      - name: Cache Dependencies
+        run: deno cache ./src/scripted.ts
 
       - name: Run Tests
         run: deno test -A --unstable
