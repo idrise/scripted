@@ -18,7 +18,7 @@ const createTmpPackageJson: () => Promise<string> = async () => {
     "description": "5",
     "main": "index.js",
     "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo 'Error: no test specified' && exit 1"
     },
     "author": "Jimmy",
     "license": "ISC",
@@ -45,7 +45,7 @@ Deno.test("Updates the description async", async () => {
   "description": "hello",
   "main": "index.js",
   "scripts": {
-    "test": "echo \\"Error: no test specified\\" && exit 1"
+    "test": "echo 'Error: no test specified' && exit 1"
   },
   "author": "Jimmy",
   "license": "ISC",
@@ -70,7 +70,7 @@ Deno.test("Updates the description sync", async (): Promise<void> => {
   "description": "hello",
   "main": "index.js",
   "scripts": {
-    "test": "echo \\"Error: no test specified\\" && exit 1"
+    "test": "echo 'Error: no test specified' && exit 1"
   },
   "author": "Jimmy",
   "license": "ISC",
