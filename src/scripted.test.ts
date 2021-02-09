@@ -1,6 +1,5 @@
 import {
   assertEquals,
-  assertThrows,
   assertThrowsAsync,
 } from "https://deno.land/std@0.83.0/testing/asserts.ts";
 import { script } from "./scripted.ts";
@@ -23,8 +22,7 @@ Deno.test("Works with a failed chain", async () => {
   );
   const expected = {
     1: {
-      output:
-        "ls: illegal option -- zusage: ls [-@ABCFGHLOPRSTUWabcdefghiklmnopqrstuwx1%] [file ...]",
+      output: "ls",
       status: {
         code: 1,
         success: false,
@@ -38,7 +36,12 @@ Deno.test("Works with a failed chain", async () => {
       },
     },
   };
-  assertEquals(actual, expected);
+  const crossPlatformOutputField = actual[1].output.split(":")[0];
+  const actualCrossPlatform = {
+    ...actual,
+    "1": { ...actual[1], output: crossPlatformOutputField },
+  };
+  assertEquals(actualCrossPlatform, expected);
 });
 
 Deno.test("Tests silent execution", async () => {
