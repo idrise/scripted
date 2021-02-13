@@ -1,5 +1,7 @@
 import {
+  assert,
   assertEquals,
+  assertStringIncludes,
   assertThrowsAsync,
 } from "https://deno.land/std@0.83.0/testing/asserts.ts";
 import { script } from "./scripted.ts";
@@ -20,7 +22,7 @@ Deno.test("Works with a failed chain", async () => {
       throwOnError: false,
     },
   );
-  const expected = {
+  const expectedShape = {
     1: {
       output: "ls",
       status: {
@@ -36,12 +38,16 @@ Deno.test("Works with a failed chain", async () => {
       },
     },
   };
-  const crossPlatformOutputField = actual[1].output.split(":")[0];
-  const actualCrossPlatform = {
-    ...actual,
-    "1": { ...actual[1], output: crossPlatformOutputField },
-  };
-  assertEquals(actualCrossPlatform, expected);
+  const actualFirstRun = actual.firstRun;
+  const actualLsRun = actual[1];
+
+  assertStringIncludes(actualLsRun.output, "ls");
+  assert(actualLsRun.status.code > 0);
+  assert(actualLsRun.status.success === false);
+
+  assertEquals(actualFirstRun.output, "hello");
+  assert(actualFirstRun.status.code === 0);
+  assert(actualFirstRun.status.success === true);
 });
 
 Deno.test("Tests silent execution", async () => {
