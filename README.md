@@ -1,4 +1,4 @@
-![Deno](https://github.com/idrise/scripted/workflows/Deno/badge.svg)![deno-code-coverage](https://img.shields.io/badge/code%20coverage-90.95%25-brightgreen.svg)
+![Deno](https://github.com/idrise/scripted/workflows/Deno/badge.svg) ![deno-code-coverage](https://img.shields.io/badge/code%20coverage-90.95%25-brightgreen.svg)
 
 # Scripted
 

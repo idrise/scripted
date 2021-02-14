@@ -9,7 +9,7 @@ import { scriptRunner } from "./scriptRunner/scriptRunner.ts";
 export { packageJson } from "./configurationFileSupport/packageJson/packageJson.ts";
 export { eslintRc } from "./configurationFileSupport/eslintRc/eslintRc.ts";
 
-interface ScriptResult {
+export interface ScriptResult {
   [scriptIndexOrKey: string]: ShellResult;
 }
 
